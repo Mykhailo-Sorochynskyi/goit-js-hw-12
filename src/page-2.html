@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page 2</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <div id="header-container"></div>
+
+    <main>
+      <div class="container">
+        <h1 class="main-title">
+          <span class="main-title-gradient">Welcome</span> to page 2
+        </h1>
+        <div id="back-link-container"></div>
+      </div>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script>
+      async function loadComponent(url, containerId) {
+        try {
+          const response = await fetch(url);
+          if (!response.ok) throw new Error('Network response was not ok');
+          const content = await response.text();
+          document.getElementById(containerId).innerHTML = content;
+        } catch (error) {
+          console.error('Error loading component:', error);
+        }
+      }
+
+      loadComponent('./partials/header.html', 'header-container');
+      loadComponent('./partials/back-link.html', 'back-link-container');
+      loadComponent('./partials/footer.html', 'footer-container');
+    </script>
+  </body>
+</html>
